@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPO - Novo Relato</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-light">
+
+    <main>
+        <nav class="navbar navbar-dark bg-kpo shadow-sm">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="home.html">
+                    <span class="material-icons me-2">arrow_back</span>
+                    <span class="fw-bold">Relatar Ocorrência</span>
+                </a>
+            </div>
+        </nav>
+        <div class="container my-4">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    <form id="formOcorrencia">
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">1. Tipo de Problema</label>
+                            <select class="form-select form-select-lg border-primary" required>
+                                <option value="" selected disabled>Selecione a categoria...</option>
+                                <option value="1">Infraestrutura (Buracos, Calçadas)</option>
+                                <option value="2">Iluminação Pública (Postes, Lâmpadas)</option>
+                                <option value="3">Limpeza Urbana (Lixo, Entulho)</option>
+                                <option value="4">Zeladoria (Praças, Parques)</option>
+                                <option value="5">Saneamento (Esgoto, Vazamentos)</option>
+                            </select>
+                            <div class="form-text">Escolha a categoria que melhor descreve o problema.</div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">2. Fotos do Local</label>
+                            <input type="file" class="form-control" id="inputFoto" accept="image/*" multiple required>
+                            <div class="form-text">Clique na foto para ampliar.</div>
+                            <div id="container-preview">
+                                <div id="previewGrid" class="preview-grid"></div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-primary">3. Onde está o problema?</label>
+                            <p class="small text-muted mb-3">Informe o endereço detalhado para que a equipe de manutenção
+                                localize a ocorrência.</p>
+                            <div class="row g-2">
+                                <div class="col-12 mb-2">
+                                    <label for="endereco" class="form-label small fw-bold">Rua e Número</label>
+                                    <input type="text" class="form-control" id="endereco" name="endereco"
+                                        placeholder="Ex: Rua Paschoale di Madeo, 100" required>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="bairro" class="form-label small fw-bold">Bairro</label>
+                                    <input type="text" class="form-control" id="bairro" name="bairro"
+                                        placeholder="Digite o bairro" required>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="cidade" class="form-label small fw-bold">Cidade</label>
+                                    <input type="text" class="form-control bg-light" id="cidade" name="cidade"
+                                        value="Monte Alto" readonly>
+                                </div>
+                            </div>
+                            <div class="map-container shadow-sm mt-3">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d521.6996285852161!2d-48.49637571181875!3d-21.2614796031576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b94152e1b15d07%3A0x98248159f0d1d59!2sPrefeitura%20Municipal%20de%20Monte%20Alto!5e0!3m2!1spt-BR!2sbr!4v1778717693881!5m2!1spt-BR!2sbr"
+                                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">4. Descrição do Problema</label>
+                            <textarea class="form-control" rows="3" placeholder="Descreva o que aconteceu..."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-kpo w-100 py-3 fw-bold rounded-3">
+                            ENVIAR RELATO
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="sucessoRelato" tabindex="-1" data-bs-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow">
+                    <div class="modal-body text-center p-5">
+                        <span class="material-icons text-success display-1 mb-3">check_circle</span>
+                        <h3 class="fw-bold">Relato Enviado!</h3>
+                        <p class="text-muted small">Sua ocorrência foi registrada com sucesso sob jurisdição de Monte Alto,
+                            SP.</p>
+                        <button type="button" class="btn btn-kpo px-5 fw-bold"
+                            onclick="location.href='home.html'">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="zoomOverlay" class="img-enlarged" style="display: none;">
+            <img id="zoomImg" src="" alt="Zoom">
+        </div>
+    </main>
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const inputFoto = document.getElementById('inputFoto');
+        const previewGrid = document.getElementById('previewGrid');
+        const containerPreview = document.getElementById('container-preview');
+        const zoomOverlay = document.getElementById('zoomOverlay');
+        const zoomImg = document.getElementById('zoomImg');
+
+        const openZoom = (src) => {
+            zoomImg.src = src;
+            zoomOverlay.style.display = 'flex';
+        };
+
+        zoomOverlay.onclick = () => {
+            zoomOverlay.style.display = 'none';
+            zoomImg.src = '';
+        };
+
+        inputFoto.onchange = () => {
+            previewGrid.innerHTML = '';
+            const files = inputFoto.files;
+
+            if (files.length > 0) {
+                containerPreview.style.display = 'block';
+
+                Array.from(files).forEach(file => {
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.classList.add('img-preview');
+
+                            img.onclick = () => openZoom(e.target.result);
+
+                            previewGrid.appendChild(img);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            } else {
+                containerPreview.style.display = 'none';
+            }
+        };
+
+        document.getElementById('formOcorrencia').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Relato enviado com sucesso!');
+            window.location.href = 'home.html';
+        });
+    </script>
+</body>
+
+</html>

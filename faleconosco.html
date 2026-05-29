@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fale Conosco - KPO Zeladoria Urbana</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        /* Variáveis e Base Global */
+        :root {
+            --primary-blue: #0056b3;
+            --accent-blue: #e7f1ff;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bg-kpo {
+            background-color: var(--primary-blue) !important;
+        }
+
+        .btn-kpo {
+            background-color: var(--primary-blue);
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .btn-kpo:hover {
+            background-color: #004494;
+            color: white;
+            transform: scale(1.01);
+        }
+
+        .contact-card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-blue);
+            color: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+            margin-top: 20px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-kpo shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                KPO | Zeladoria Urbana
+            </a>
+            <div class="d-flex align-items-center text-white">
+                <span class="me-3">Olá, Cidadão</span>
+                <a href="#" class="btn btn-outline-light btn-sm">Sair</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5 flex-grow-1">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h2 class="fw-bold" style="color: var(--primary-blue);">Fale Conosco</h2>
+                <p class="text-muted">Tem alguma dúvida, sugestão ou precisa de suporte técnico? Envie uma mensagem.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div class="card contact-card p-4 p-md-5">
+                    <h5 class="fw-bold mb-4">Envie sua mensagem</h5>
+                    
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="nome" class="form-label fw-semibold">Nome</label>
+                                <input type="text" class="form-control bg-light" id="nome" value="Cidadão Monte Altense" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label fw-semibold">E-mail</label>
+                                <input type="email" class="form-control bg-light" id="email" value="cidadao@email.com" readonly>
+                            </div>
+                            <div class="col-12">
+                                <label for="assunto" class="form-label fw-semibold">Assunto</label>
+                                <select class="form-select bg-light" id="assunto" required>
+                                    <option value="" selected disabled>Selecione um assunto...</option>
+                                    <option value="duvida">Dúvida sobre o sistema</option>
+                                    <option value="sugestao">Sugestão de melhoria</option>
+                                    <option value="suporte">Problema técnico / Bug</option>
+                                    <option value="elogio">Elogio</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="mensagem" class="form-label fw-semibold">Mensagem</label>
+                                <textarea class="form-control bg-light" id="mensagem" rows="5" placeholder="Descreva aqui o seu contato detalhadamente..." required></textarea>
+                            </div>
+                            <div class="col-12 text-end mt-4">
+                                <button type="submit" class="btn btn-kpo px-4 py-2" onclick="location.href='home.html'">
+                                    <i class="bi bi-send-fill me-2"></i> Enviar Mensagem
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="card contact-card p-4 p-md-5 bg-light">
+                    <h5 class="fw-bold mb-4">Central de Atendimento</h5>
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="info-icon">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+                        <div>
+                            <p class="mb-0 fw-bold">Telefone</p>
+                            <span class="text-muted">(16) 3244-3113</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="info-icon">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                        <div>
+                            <p class="mb-0 fw-bold">E-mail</p>
+                            <span class="text-muted">suporte@kpo.montealto.sp.gov.br</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="info-icon">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+                        <div>
+                            <p class="mb-0 fw-bold">Endereço</p>
+                            <span class="text-muted">Praça Doutor Luiz Borges, Centro<br>Monte Alto - SP, 15910-000</span>
+                        </div>
+                    </div>
+
+                    <div class="map-container shadow-sm">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14878.89279581729!2d-48.5029019!3d-21.261895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b98ae2361d9a0d%3A0x6b2e10db30cd86b2!2sPrefeitura%20Municipal%20de%20Monte%20Alto!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

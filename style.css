@@ -1,0 +1,237 @@
+/* Variáveis Globais */
+:root {
+    --primary-blue: #0056b3;
+    --accent-blue: #e7f1ff;
+}
+
+/* Base */
+body {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.bg-kpo {
+    background-color: var(--primary-blue);
+}
+
+.logo-text {
+    color: var(--primary-blue);
+    font-weight: 800;
+    font-size: 2.5rem;
+}
+
+.btn-kpo {
+    background-color: var(--primary-blue);
+    color: white;
+    transition: all 0.3s;
+}
+
+.btn-kpo:hover {
+    background-color: #004494;
+    color: white;
+    transform: scale(1.01);
+}
+
+.badge-status {
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.status-aberto {
+    background-color: #ffc107;
+    /* Amarelo */
+    color: #000;
+}
+
+.status-andamento {
+    background-color: #0d6efd;
+    /* Azul */
+    color: #fff;
+}
+
+.status-concluido {
+    background-color: #198754;
+    /* Verde */
+    color: #fff;
+}
+
+.card-relato {
+    border-radius: 12px;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.card-relato:hover {
+    transform: scale(1.01);
+}
+
+.recovery-card,
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+}
+
+.signin-card {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding: 15px;
+}
+
+.feature-card {
+    transition: transform 0.3s ease, shadow 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.feature-card:hover .icon-box {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    background-color: var(--accent-blue);
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s;
+}
+
+.timeline {
+    border-left: 2px solid #dee2e6;
+    padding-left: 20px;
+    position: relative;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -27px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--primary-blue);
+}
+
+.img-detalhe {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    max-height: 300px;
+    cursor: pointer;
+}
+
+#container-preview {
+    display: none;
+    margin-top: 15px;
+}
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.img-preview {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: 1px solid #dee2e6;
+}
+
+.img-preview:hover {
+    transform: scale(1.05);
+}
+
+.img-enlarged {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: zoom-out;
+}
+
+.img-enlarged img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Mapas */
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #dee2e6;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.tela-centralizada {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.profile-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.profile-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background-color: var(--accent-blue);
+    color: var(--primary-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 15px auto;
+}
